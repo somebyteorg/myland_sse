@@ -1,0 +1,20 @@
+{
+  "name": "myland_sse",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --watch src --transpile-only src/main",
+    "build": "tsc",
+    "prod": "node dist/main"
+  },
+  "dependencies": {
+    "@fastify/sse": "^0.4.0",
+    "dotenv": "^17.4.1",
+    "fastify": "^5.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
