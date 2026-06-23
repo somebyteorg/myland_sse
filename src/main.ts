@@ -45,6 +45,28 @@ const fastify = Fastify({
     return reply.send([...CLIENTS.keys()])
   })
 
+  fastify.post('/tick', (req: any, reply) => {
+    if (req.body.token != TOKEN) {
+      return reply.code(403).send()
+    }
+
+    let count = 0
+    let tick = Number(req.body.tick)
+    if (tick) {
+      for (let sse of CLIENTS.values()) {
+        count += 1
+        sse.send({
+          event: 'tick',
+          data: {
+            tick,
+          }
+        })
+      }
+    }
+
+    reply.send(count)
+  })
+
   fastify.post('/push', (req: any, reply) => {
     if (req.body.token != TOKEN) {
       return reply.code(403).send()
